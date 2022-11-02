@@ -1,8 +1,17 @@
 import socket
 from signal import signal, SIGPIPE, SIG_DFL
+import json
 signal(SIGPIPE,SIG_DFL) "https://www.geeksforgeeks.org/broken-pipe-error-in-python/"
 "fekk pipe error uten bibloteke øve, (pga blei nåe tull med oversending av data) luringen øve sende det i klyster føkk" \
 "så fins annen metode i linken som sende bære, ser om det blir nødvendig i prosjektet okkas"
+
+sensorvalue = {
+    "sensor 1" : 5,
+    "sensor 2" : 27,
+    "sensor 3" : "feil melding :("
+}
+
+json_sensorvalue = json.dumps(sensorvalue, indent=3)
 
 def main():
     try:
@@ -17,8 +26,8 @@ def main():
             with conn:
                 print(f"Connected by {addr}")
                 while True:
-                    data = conn.recv(256).decode("utf-8")[:-1] # remove '\n'
-                    conn.send("Hello, {}!\n".format(data).encode("utf-8"))
+                    data = conn.recv(256).decode("utf-8")[:-1] # remove '\n' #se på sending av data
+                    conn.send("Hello, {}!\n".format(data).encode("utf-8")) #se på \n luring, kan kanskje væra lurt å se på byte øveførings greiå
     except Exception as e:
         print(e)
 
