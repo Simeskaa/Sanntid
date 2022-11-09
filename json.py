@@ -1,7 +1,9 @@
 import jsonlib as json
 
 
-test = json.write({'sensor 1' : 25, 'sensor 2' : 13, 'sensor 3' : 1000},sort_keys=True, indent=' ').decode ('utf8')
+test = json.write({'sensor 1' : 25,
+                   'sensor 2' : 13,
+                   'sensor 3' : "feil melding :("},sort_keys=True, indent=' ').decode ('utf8')
 
 read = json.read(test)
 
