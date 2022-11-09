@@ -9,7 +9,6 @@ test = json.write({'sensor 1' : 25,
                    'sensor 2' : 13,
                    'sensor 3' : "feil melding :("},sort_keys=True, indent=' ').decode ('utf8')
 
-
 def main():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -23,9 +22,11 @@ def main():
             with conn:
                 print(f"Connected by {addr}")
                 while True:
-                    data = conn.recv(256).decode("utf-8")[:-1] # remove '\n' #se på sending av data
+                    data = conn.recv(256).decode("utf-8")#[:-1] # remove '\n' #se på sending av data
                     #conn.send("Hello, {}!\n".format(data).encode("utf-8")) #se på \n luring, kan kanskje væra lurt å se på byte øveførings greiå
                     conn.send(test.encode("utf-8"))
+                    read = json.read(data)
+                    print(read['hast_h'])
     except Exception as e:
         print(e)
 

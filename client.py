@@ -5,6 +5,9 @@ import jsonlib as json
 "fekk pipe error uten bibloteke øve, (pga blei nåe tull med oversending av data) luringen øve sende det i klyster føkk" \
 "så fins annen metode i linken som sende bære, ser om det blir nødvendig i prosjektet okkas"
 
+client_test = json.write({'hast_h' : "vrooooooooom",
+                          'hast_v' : "brabom"},sort_keys=True, indent=' ').decode ('utf8')
+
 def main():
 
     # Create a TCP/IP socket
@@ -15,7 +18,8 @@ def main():
         sock.connect(server_address)
 
         for i in range(0, 10):
-            sock.send("{}\n".format(i).encode("utf-8"))
+            #sock.send("{}\n".format(i).encode("utf-8"))
+            sock.send(client_test.encode("utf-8"))
             data = sock.recv(256).decode("utf-8")#[:-1]
             read = json.read(data)
             #print("Got: {}".format(data))
